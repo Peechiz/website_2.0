@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   let root = full[full.length-1];
   root = root.slice(0,root.length-5);
   console.log(root);
-
+  root = root || 'index'
   let page = document.querySelector(`#${root}`);
   console.log(page);
   page.classList.add('active');
