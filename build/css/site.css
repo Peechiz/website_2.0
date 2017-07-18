@@ -3,16 +3,62 @@
   src: url("../fonts/Blackout_Midnight.ttf");
 }
 
+@font-face {
+  font-family: "Roboto";
+  src: local(Roboto Light), url("../fonts/roboto/Roboto-Light.eot");
+  src: url("../fonts/roboto/Roboto-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/roboto/Roboto-Light.woff2") format("woff2"), url("../fonts/roboto/Roboto-Light.woff") format("woff"), url("../fonts/roboto/Roboto-Light.ttf") format("truetype");
+  font-weight: 300; }
+
 :root {
   --purp: #A73B89;
   --blackout: 'blackout', sans-serif;
+  --logo-size: 5em;
+  --nav-size: 3.5em;
+  --closed: 6em;
+  --template-area:
+    'hamburger logo logo .'
+    '. nav nav .'
 }
 
+/* bigger than iphone */
+@media (orientation: landscape) {
+  :root {
+    --logo-size: 2em;
+    --nav-size: 1.5em;
+    --closed: 38px;
+  }
+  .nav li {
+    display: inline-block;
+  }
+}
+
+ /*bigger than half the page */
+@media only screen and (min-width: 945px) and (orientation: landscape) {
+  :root {
+    --template-area:
+    '. logo nav .'
+    '. . . .'
+  }
+  ul.nav {
+    margin: 0;
+  }
+  .nav li {
+    display: inline-block;
+  }
+  ul.nav a {
+    font-size: 1em;
+  }
+  #hamburger {
+    display: none;
+  }
+}
 
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-color: black;
+  font-family: 'Roboto', sans-serif;
 }
 
 ul {
@@ -22,33 +68,66 @@ ul {
 }
 
 header {
+  overflow-y: hidden;
+  text-align: center;
   background-color: var(--purp);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 0 1em;
+  grid-template-columns: .1fr 1fr 1fr .1fr;
+  grid-template-areas: var(--template-area);
+  padding: 1em 0;
+  max-height: 100vh;
+  transition: max-height .5s cubic-bezier(0, 1, 0.5, 1);
+  /*clip-path: polygon(0 12%, 100% 5%, 100% 88%, 0 100%);*/
+}
+
+header.closed {
+  max-height: var(--closed);
 }
 
 header h1 {
   font-family: var(--blackout);
-  margin: .5em 0;
+  font-size: var(--logo-size);
+  margin: 0;
+  grid-area: logo;
+  /*transform: rotate(-2deg);*/
 }
 
-nav, .nav {
-  height: 100%;
+#hamburger {
+  /*line-height: 5px;*/
+  grid-area: hamburger;
+  position: relative;
+  bottom: .2em;
+  left: .5em;
+  cursor: pointer;
+
 }
 
-nav a {
+.nav {
+  margin-top: 1em;
+  grid-area: nav;
+  /*transform: rotate(-2deg);*/
+}
+
+.nav a {
   color: black;
   text-decoration: none;
-  line-height: 64px;
+  /*line-height: 50px;*/
+  font-size: var(--nav-size);
 }
 
-nav li {
-  height: 100%;
-  display: inline-block;
-  padding: 0 .5em;
+.nav li {
+  /*height: 100%;*/
+  /*display: inline-block;*/
+  padding: .5em 1em;
+  /*clip-path: polygon(20% 0, 100% 0%, 80% 100%, 0% 100%);*/
 }
 
-nav li:hover {
+.nav li:hover, .nav li.active {
   background-color: rgba(0,0,0,.2);
+}
+
+
+
+main {
+  color: white;
 }
