@@ -12,16 +12,16 @@
 :root {
   --purp: #A73B89;
   --blackout: 'blackout', sans-serif;
-  --logo-size: 5em;
-  --nav-size: 3.5em;
-  --closed: 6em;
+  --logo-size: 8vw;
+  --nav-size: 6vw;
+  --closed: 7.5vw;
   --template-area:
     'hamburger logo logo .'
     '. nav nav .'
 }
 
 /* bigger than iphone */
-@media (orientation: landscape) {
+@media only screen and (min-width: 556px) and (min-aspect-ratio: 1/1){
   :root {
     --logo-size: 2em;
     --nav-size: 1.5em;
@@ -32,7 +32,7 @@
   }
 }
 
- /*bigger than half the page */
+ /* bigger than like half computer */
 @media only screen and (min-width: 945px) and (orientation: landscape) {
   :root {
     --template-area:
@@ -124,6 +124,7 @@ header h1 {
 
 .nav li:hover, .nav li.active {
   background-color: rgba(0,0,0,.2);
+  clip-path: polygon(7% 0, 100% 0%, 93% 100%, 0% 100%);
 }
 
 
