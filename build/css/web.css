@@ -1,0 +1,92 @@
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+  margin: 2em;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: .3fr .7fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'img title'
+    'desc desc';
+  grid-gap: 2em;
+  padding: 1em;
+  color: black;
+  background-color: var(--purp);
+  border-left: 1px solid var(--purp);
+}
+
+.project h3 {
+  font-size: var(--nav-size);
+  margin: 0;
+  margin-top: .3em;
+  grid-area: title;
+}
+
+.project img {
+  width: 100%;
+  grid-area: img;
+  /*filter: grayscale();*/
+  /*background-color: #65BF43;*/
+  /*mix-blend-mode: multiply;*/
+}
+
+.project p {
+  margin: 0;
+  grid-area: desc;
+}
+
+.new {
+  position: relative;
+  overflow: hidden;
+}
+
+.new:before {
+  position: absolute;
+  padding-top: 3em;
+  content: 'NEW!';
+  top: 0;
+  right: 0;
+  font-weight: bold;
+  line-height: 2em;
+  background-color: rgba(0,250,0,.7);
+  color: black;
+  width: 50%;
+  text-align: center;
+  transform: translate(calc(100% / 2 - 30px), -20px) rotate(30deg);
+}
+
+
+/* bigger than iphone */
+@media only screen and (min-width: 556px) and (min-aspect-ratio: 1/1){
+  .project {
+    grid-template-areas:
+      'img title'
+      'img desc';
+  }
+}
+
+ /* bigger than like half computer */
+@media only screen and (min-width: 945px) and (orientation: landscape) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+  .project {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+/* big enough for 3 column layout */
+@media only screen and (min-width: 1036px) and (orientation: landscape) {
+  main {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .project {
+    grid-template-areas:
+      'img title'
+      'desc desc';
+  }
+}
